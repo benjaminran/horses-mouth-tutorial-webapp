@@ -2,7 +2,7 @@ var app;
 (function() {
     'use strict';
 
-    var backendEndpoint = 'http://localhost:5000';
+    var backendEndpoint = 'https://safe-retreat-92487.herokuapp.com'; //'http://localhost:5000';
     var backendPollInterval = 5000; // 15000
 
     app = new Vue({
