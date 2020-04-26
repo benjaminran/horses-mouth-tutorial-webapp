@@ -19,24 +19,22 @@
         <span class="sr-only">Loading...</span>
     </div>
     <div v-for="topic in topics">
-        <div v-if="topic.subscribed || !showSubscribedOnly">
-            <h4 class="topicName">{{topic.name}}</h4>
-            <input type="checkbox" v-model="topic.subscribed" v-bind:id="'check-'+topic.id">
-            <label v-bind:for="'check-'+topic.id">{{topic.subscribed ? '' : 'Not '}}Subscribed</label>
-            <audio v-bind:id="'sound-'+topic.id">
-                <source v-bind:src='topic.sound'/>
-            </audio>
-            |
-            <a href="#" v-on:click="playSound(topic.id)">Preview Sound</a>
-            |
-            <a href="#" class="btn btn-primary" v-on:click="notify(topic.id)">Notify</a>
-            <p class="topicDescription">{{topic.description}}</p>
-            <hr>
-        </div>
+        <h4 class="topicName">{{topic.name}}</h4>
+        <input type="checkbox" v-model="topic.subscribed" v-bind:id="'check-'+topic.id">
+        <label v-bind:for="'check-'+topic.id">{{topic.subscribed ? '' : 'Not '}}Subscribed</label>
+        <audio v-bind:id="'sound-'+topic.id">
+            <source v-bind:src='topic.sound'/>
+        </audio>
+        |
+        <a href="#" v-on:click="playSound(topic.id)">Preview Sound</a>
+        |
+        <a href="#" class="btn btn-primary">Notify</a>
+        <p class="topicDescription">{{topic.description}}</p>
+        <hr>
     </div>
 
     <div>
-        <a id="toggleShowSubscribedOnly" href="#" v-on:click="toggleShowSubscribedOnly">Show {{showSubscribedOnly ? 'All' : 'Subscribed Only'}}</a>
+        <a id="toggleShowSubscribedOnly" href="#">Show {{showSubscribedOnly ? 'All' : 'Subscribed Only'}}</a>
         |
         <a id="newTopic" href="#newTopicForm" v-on:click="showNewTopicForm">Add a Topic</a>
     </div>

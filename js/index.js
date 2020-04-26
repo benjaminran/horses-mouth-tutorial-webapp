@@ -2,7 +2,7 @@ var app;
 (function() {
     'use strict';
 
-    var backendEndpoint = 'https://safe-retreat-92487.herokuapp.com'; //'http://localhost:5000';
+    var backendEndpoint = 'http://localhost:5000'; // Beni's backend: 'https://safe-retreat-92487.herokuapp.com';
     var backendPollInterval = 5000; // 15000
 
     app = new Vue({
@@ -19,9 +19,6 @@ var app;
             }
         },
         methods: {
-            toggleShowSubscribedOnly: function() {
-                app.showSubscribedOnly = !app.showSubscribedOnly;
-            },
             showNewTopicForm: function(){
                 app.newTopicFormVisible = true;
             },
@@ -55,22 +52,6 @@ var app;
                 var audio = document.getElementById('sound-'+topicId);
                 audio.currentTime = 0;
                 audio.play();
-            },
-            notify: function(topicId) {
-                $.ajax({
-                    type: 'PUT',
-                    url: backendEndpoint + '/topics/'+topicId,
-                    dataType: 'json',
-                    success: function (data, textStatus, jqXHR) {
-                        console.log("notify status: " + textStatus);
-                        console.log(data);
-                        app.topics[topicId].lastUpdateTime = data.time;
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-
-                        console.log('notify status: ' + textStatus + ': ' + errorThrown);
-                    }
-                });
             }
         }
     });
